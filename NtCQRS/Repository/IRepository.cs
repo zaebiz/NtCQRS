@@ -43,7 +43,7 @@ namespace NtCQRS.Repository
                 .ApplyPaging(paging)
                 .ToList();
 
-        public List<T> GetOrderedFilteredPagedList<T, V>(INtJoin<T> join, INtSpecification<T> filter, INtPaging paging, INtOrderExpression<T, V> order ) where T : class
+        public List<T> GetOrderedFilteredPagedList<T, V>(INtJoin<T> join, INtSpecification<T> filter, INtPaging paging, INtOrder<T, V> order ) where T : class
             => GetQueryable<T>()
                 .ApplyJoin(join)
                 .ApplyFilter(filter)

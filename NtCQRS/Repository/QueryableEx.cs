@@ -33,7 +33,7 @@ namespace NtCQRS.Repository
             return src;
         }
 
-        public static IQueryable<T> ApplyOrder<T, V>(this IQueryable<T> src, INtOrderExpression<T, V> order) where T : class
+        public static IQueryable<T> ApplyOrder<T, V>(this IQueryable<T> src, INtOrder<T, V> order) where T : class
         {
             if (order != null)
             {
