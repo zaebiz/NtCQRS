@@ -4,12 +4,13 @@ using System.Linq;
 using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
+using NtCQRS.Specification;
 
 namespace NtCQRS.Repository
 {
     public static class NtQueryableEx
     {
-        public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> src, INtSpecification<T> filter) where T : class
+        public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> src, INtFilter<T> filter) where T : class
         {
             if (filter != null)
                 src = filter.GetSatisfiedItems(src);
@@ -28,7 +29,7 @@ namespace NtCQRS.Repository
         public static IQueryable<T> ApplyPaging<T>(this IQueryable<T> src, INtPaging paging) where T : class
         {
             if (paging != null)
-                src = src.Skip(paging.Offset).Take(paging.Limit);
+                src = src.Skip(paging.Offset).Take(paging.PageSize);
 
             return src;
         }

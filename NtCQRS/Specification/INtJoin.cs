@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace NtCQRS.Repository
+namespace NtCQRS.Specification
 {
     public interface INtJoin<T> where T : class
     {

@@ -1,8 +1,8 @@
-﻿namespace NtCQRS.Repository
+﻿namespace NtCQRS.Specification
 {
     public interface INtPaging
     {
         int Offset { get; }
-        int Limit { get; }
+        int PageSize { get; set; }
     }
 }

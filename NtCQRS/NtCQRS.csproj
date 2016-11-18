@@ -50,20 +50,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Repository\INtJoin.cs" />
-    <Compile Include="Repository\INtOrderInfo.cs" />
-    <Compile Include="Repository\INtPaging.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="INtQuery.cs" />
+    <Compile Include="NtQueryBase.cs" />
+    <Compile Include="Specification\INtJoin.cs" />
+    <Compile Include="Specification\INtPaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\INtOrder.cs" />
-    <Compile Include="Repository\QueryableEx.cs" />
     <Compile Include="Repository\INtSpecification.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Specification\INtOrder.cs" />
+    <Compile Include="Repository\QueryableEx.cs" />
+    <Compile Include="Specification\INtFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\NtCQRS.Models\NtCQRS.Models.csproj">
+      <Project>{A2B07EAB-0AB4-4DB1-969D-51DC47CB903D}</Project>
+      <Name>NtCQRS.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

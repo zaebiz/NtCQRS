@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NtCQRS.Specification;
 
 namespace NtCQRS.Repository
 {
@@ -30,20 +31,20 @@ namespace NtCQRS.Repository
                 .ApplyJoin(join)
                 .ToList();
 
-        public List<T> GetFilteredList<T>(INtJoin<T> join, INtSpecification<T> filter) where T : class
+        public List<T> GetFilteredList<T>(INtJoin<T> join, INtFilter<T> filter) where T : class
             => GetQueryable<T>()
                 .ApplyJoin(join)
                 .ApplyFilter(filter)
                 .ToList();
 
-        public List<T> GetFilteredPagedList<T>(INtJoin<T> join, INtSpecification<T> filter, INtPaging paging) where T : class
+        public List<T> GetFilteredPagedList<T>(INtJoin<T> join, INtFilter<T> filter, INtPaging paging) where T : class
             => GetQueryable<T>()
                 .ApplyJoin(join)
                 .ApplyFilter(filter)
                 .ApplyPaging(paging)
                 .ToList();
 
-        public List<T> GetOrderedFilteredPagedList<T, V>(INtJoin<T> join, INtSpecification<T> filter, INtPaging paging, INtOrder<T, V> order ) where T : class
+        public List<T> GetOrderedFilteredPagedList<T, V>(INtJoin<T> join, INtFilter<T> filter, INtPaging paging, INtOrder<T, V> order ) where T : class
             => GetQueryable<T>()
                 .ApplyJoin(join)
                 .ApplyFilter(filter)
