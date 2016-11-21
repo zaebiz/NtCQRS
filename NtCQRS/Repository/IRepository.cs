@@ -11,10 +11,10 @@ namespace NtCQRS.Repository
 {
     public interface IRepository
     {
-        TEntity GetItemById<TEntity>(int itemId) where TEntity : class;
-        //IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class;
-        IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class;
-        IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec) where TEntity : class;
+        TEntity GetItemById<TEntity>(int itemId) where TEntity : class, IDbEntity;
+        //IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : IDbEntity;
+        IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class, IDbEntity;
+        IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec) where TEntity : class, IDbEntity;
     }
 
     public class NtRepository : IRepository
@@ -26,14 +26,14 @@ namespace NtCQRS.Repository
             _db = db;
         }
 
-        public TEntity GetItemById<TEntity>(int id/*, INtJoin<TEntity> join*/) where TEntity : class
+        public TEntity GetItemById<TEntity>(int id/*, INtJoin<TEntity> join*/) where TEntity : class, IDbEntity
             => _db.Set<TEntity>()
                 .Find(id);
 
-        private IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class
+        private IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class, IDbEntity
             => _db.Set<TEntity>();
 
-        public IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class
+        public IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class, IDbEntity
         {
             return GetQueryable<TEntity>()
                 .ApplyJoin(spec.Join)
@@ -43,7 +43,7 @@ namespace NtCQRS.Repository
              
 
         public IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec)
-            where TEntity : class
+            where TEntity : class, IDbEntity
         {
             return GetList<TEntity>(spec.Spec)
                 .ApplyOrder(spec.Order);

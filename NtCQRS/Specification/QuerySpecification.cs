@@ -1,7 +1,7 @@
 ﻿namespace NtCQRS.Specification
 {
     // todo - можно переделать в класс
-    public class QuerySpecification<T> where T : class 
+    public class QuerySpecification<T> where T : IDbEntity
     {
         public QuerySpecification()
         {

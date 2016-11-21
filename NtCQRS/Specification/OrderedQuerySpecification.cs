@@ -1,6 +1,6 @@
 namespace NtCQRS.Specification
 {
-    public class OrderedQuerySpecification<TEntity, TSortKey> where TEntity : class
+    public class OrderedQuerySpecification<TEntity, TSortKey> where TEntity : IDbEntity
     {
         public OrderedQuerySpecification()
         {

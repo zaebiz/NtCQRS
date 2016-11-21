@@ -50,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DbEntityBase.cs" />
     <Compile Include="ICommand.cs" />
+    <Compile Include="IDbEntity.cs" />
     <Compile Include="INtQuery.cs" />
     <Compile Include="NtQueryBase.cs" />
     <Compile Include="Specification\IQueryJoin.cs" />

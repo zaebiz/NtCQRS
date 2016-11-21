@@ -10,7 +10,7 @@ namespace NtCQRS.Repository
 {
     public static class NtQueryableEx
     {
-        public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> src, IQueryFilter<T> filter) where T : class
+        public static IQueryable<TEntity> ApplyFilter<TEntity>(this IQueryable<TEntity> src, IQueryFilter<TEntity> filter) where TEntity : IDbEntity
         {
             if (filter != null)
                 src = filter.GetSatisfiedItems(src);
@@ -18,7 +18,7 @@ namespace NtCQRS.Repository
             return src;
         }
 
-        public static IQueryable<T> ApplyJoin<T>(this IQueryable<T> src, IQueryJoin<T> join) where T : class
+        public static IQueryable<TEntity> ApplyJoin<TEntity>(this IQueryable<TEntity> src, IQueryJoin<TEntity> join) where TEntity : IDbEntity
         {
             if (join != null)
                 src = join.Include(src);
@@ -26,7 +26,7 @@ namespace NtCQRS.Repository
             return src;
         }
 
-        public static IQueryable<T> ApplyPaging<T>(this IQueryable<T> src, IQueryPaging paging) where T : class
+        public static IQueryable<TEntity> ApplyPaging<TEntity>(this IQueryable<TEntity> src, IQueryPaging paging) where TEntity : IDbEntity
         {
             if (paging != null)
                 src = src.Skip(paging.Offset).Take(paging.PageSize);
@@ -34,7 +34,7 @@ namespace NtCQRS.Repository
             return src;
         }
 
-        public static IQueryable<T> ApplyOrder<T, V>(this IQueryable<T> src, IQueryOrder<T, V> order) where T : class
+        public static IQueryable<TEntity> ApplyOrder<TEntity, V>(this IQueryable<TEntity> src, IQueryOrder<TEntity, V> order) where TEntity : IDbEntity
         {
             if (order != null)
             {
@@ -49,12 +49,12 @@ namespace NtCQRS.Repository
 
 
 
-        //public static IQueryable<T> GetFilteredList<T>(this IQueryable<T> src, INtSpecification<T> filter) where T : class
+        //public static IQueryable<T> GetFilteredList<T>(this IQueryable<T> src, INtSpecification<T> filter) where TEntity : IDbEntity
         //{
         //    return src.ApplyFilter(filter);
         //}
 
-        //public static IQueryable<T> GetPagedFilteredList<T>(this IQueryable<T> src, INtSpecification<T> filter, INtPaging paging) where T : class
+        //public static IQueryable<T> GetPagedFilteredList<T>(this IQueryable<T> src, INtSpecification<T> filter, INtPaging paging) where TEntity : IDbEntity
         //{
         //    return src
         //        .ApplyFilter(filter)
@@ -63,7 +63,7 @@ namespace NtCQRS.Repository
 
 
 
-        //public static IQueryable<T> GetFilteredList<T>(this IQueryable<T> src, ISpecification<T> filter) where T : class
+        //public static IQueryable<T> GetFilteredList<T>(this IQueryable<T> src, ISpecification<T> filter) where TEntity : IDbEntity
         //    => src.ApplyFilter(filter);
     }
 }

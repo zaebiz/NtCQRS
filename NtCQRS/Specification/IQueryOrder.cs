@@ -2,9 +2,10 @@
 
 namespace NtCQRS.Specification
 {
-    public interface IQueryOrder<T, V> where T : class
+    public interface IQueryOrder<TEntity, TSortKey> 
+        where TEntity : IDbEntity
     {
         int Direction { get; set; }
-        Func<T, V> Expression { get; set; }
+        Func<TEntity, TSortKey> Expression { get; set; }
     }
 }

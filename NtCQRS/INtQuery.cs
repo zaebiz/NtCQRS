@@ -10,7 +10,7 @@ using NtCQRS.Specification;
 namespace NtCQRS
 {
     public interface INtQuery<TEntity> 
-        where TEntity : class
+        where TEntity : IDbEntity
     {
         List<TEntity> GetResult();
         Task<List<TEntity>> GetResultAsync();

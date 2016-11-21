@@ -2,8 +2,8 @@
 
 namespace NtCQRS.Specification
 {
-    public interface IQueryFilter<T> where T : class
+    public interface IQueryFilter<TEntity> where TEntity : IDbEntity
     {
-        IQueryable<T> GetSatisfiedItems(IQueryable<T> src);
+        IQueryable<TEntity> GetSatisfiedItems(IQueryable<TEntity> src);
     }
 }
