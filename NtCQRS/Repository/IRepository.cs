@@ -9,7 +9,7 @@ using NtCQRS.Specification;
 
 namespace NtCQRS.Repository
 {
-    public interface INtRepository
+    public interface IRepository
     {
         TEntity GetItemById<TEntity>(int itemId) where TEntity : class;
         //IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class;
@@ -17,7 +17,7 @@ namespace NtCQRS.Repository
         IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec) where TEntity : class;
     }
 
-    public class NtRepository : INtRepository
+    public class NtRepository : IRepository
     {
         private readonly DbContext _db;
 

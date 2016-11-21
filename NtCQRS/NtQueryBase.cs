@@ -15,7 +15,7 @@ namespace NtCQRS
         : INtQuery<TEntity> where TEntity : class
     {
         protected RacetrackIASEntities _context;
-        protected INtRepository _db;
+        protected IRepository _db;
         protected IQueryable<TEntity> _executeResult;
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace NtCQRS
         where TEntity : class
     {
         protected DbContext _context;
-        protected INtRepository _db;
+        protected IRepository _db;
 
         public BaseQuery2(DbContext ctx)
         {
@@ -163,7 +163,7 @@ namespace NtCQRS
     public class Query3Base<TEntity> where TEntity : class
     {
         protected DbContext _context;
-        protected INtRepository _db;
+        protected IRepository _db;
 
         protected Query3Base(DbContext ctx)
         {
