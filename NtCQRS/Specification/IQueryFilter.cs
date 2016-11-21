@@ -2,7 +2,7 @@
 
 namespace NtCQRS.Specification
 {
-    public interface INtFilter<T> where T : class
+    public interface IQueryFilter<T> where T : class
     {
         IQueryable<T> GetSatisfiedItems(IQueryable<T> src);
     }

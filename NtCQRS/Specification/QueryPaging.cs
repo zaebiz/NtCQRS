@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace NtCQRS.Specification
 {
-    public class NtPagingBase : INtPaging
+    public class QueryPaging : IQueryPaging
     {
-        public NtPagingBase()
+        public QueryPaging() : this(20, 0)
+        {}
+
+        public QueryPaging(int pageSize, int pageNumber)
         {
-            PageSize = 20;
-            PageNumber = 0;
+            PageSize = pageSize;
+            PageNumber = pageNumber;
         }
 
         public int PageSize { get; set; }

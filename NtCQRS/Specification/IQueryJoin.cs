@@ -2,7 +2,7 @@
 
 namespace NtCQRS.Specification
 {
-    public interface INtJoin<T> where T : class
+    public interface IQueryJoin<T> where T : class
     {
         IQueryable<T> Include(IQueryable<T> src);
     }

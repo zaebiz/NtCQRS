@@ -55,6 +55,7 @@
     <Compile Include="Documents.cs">
       <DependentUpon>Racetrack.tt</DependentUpon>
     </Compile>
+    <Compile Include="Filters\RiderFilter.cs" />
     <Compile Include="HorseFrisknessRecord.cs">
       <DependentUpon>Racetrack.tt</DependentUpon>
     </Compile>

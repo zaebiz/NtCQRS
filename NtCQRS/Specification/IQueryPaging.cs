@@ -1,6 +1,6 @@
 ﻿namespace NtCQRS.Specification
 {
-    public interface INtPaging
+    public interface IQueryPaging
     {
         int Offset { get; }
         int PageSize { get; set; }

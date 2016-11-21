@@ -2,54 +2,53 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using NtCQRS.Specification;
 
 namespace NtCQRS.Repository
 {
-    public interface IRepository
+    public interface INtRepository
     {
-        T GetItemById<T>(int itemId);
-        List<T> GetList<T>();
+        TEntity GetItemById<TEntity>(int itemId) where TEntity : class;
+        //IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class;
+        IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class;
+        IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec) where TEntity : class;
     }
 
-    public class Repository
+    public class NtRepository : INtRepository
     {
         private readonly DbContext _db;
 
-        public Repository(DbContext db)
+        public NtRepository(DbContext db)
         {
             _db = db;
         }
 
-        private IQueryable<T> GetQueryable<T>() where T : class
-            => _db.Set<T>();
+        public TEntity GetItemById<TEntity>(int id/*, INtJoin<TEntity> join*/) where TEntity : class
+            => _db.Set<TEntity>()
+                .Find(id);
 
-        public List<T> GetList<T>(INtJoin<T> join) where T : class
-            => GetQueryable<T>()
-                .ApplyJoin(join)
-                .ToList();
+        private IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class
+            => _db.Set<TEntity>();
 
-        public List<T> GetFilteredList<T>(INtJoin<T> join, INtFilter<T> filter) where T : class
-            => GetQueryable<T>()
-                .ApplyJoin(join)
-                .ApplyFilter(filter)
-                .ToList();
+        public IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class
+        {
+            return GetQueryable<TEntity>()
+                .ApplyJoin(spec.Join)
+                .ApplyFilter(spec.Filter)
+                .ApplyPaging(spec.Paging);
+        }
+             
 
-        public List<T> GetFilteredPagedList<T>(INtJoin<T> join, INtFilter<T> filter, INtPaging paging) where T : class
-            => GetQueryable<T>()
-                .ApplyJoin(join)
-                .ApplyFilter(filter)
-                .ApplyPaging(paging)
-                .ToList();
+        public IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec)
+            where TEntity : class
+        {
+            return GetList<TEntity>(spec.Spec)
+                .ApplyOrder(spec.Order);
+        }
 
-        public List<T> GetOrderedFilteredPagedList<T, V>(INtJoin<T> join, INtFilter<T> filter, INtPaging paging, INtOrder<T, V> order ) where T : class
-            => GetQueryable<T>()
-                .ApplyJoin(join)
-                .ApplyFilter(filter)
-                .ApplyOrder(order)
-                .ApplyPaging(paging)
-                .ToList();
+        
     }
 }

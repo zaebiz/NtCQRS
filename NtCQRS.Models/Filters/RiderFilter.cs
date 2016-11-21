@@ -11,4 +11,10 @@ namespace NtCQRS.Models.Filters
         public int RiderId { get; set; }
         public string RiderName { get; set; }
     }
+
+    public class RiderFilter
+    {
+        public int RiderId { get; set; }
+        public string RiderName { get; set; }
+    }
 }

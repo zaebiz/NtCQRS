@@ -10,7 +10,7 @@ namespace NtCQRS.Repository
 {
     public static class NtQueryableEx
     {
-        public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> src, INtFilter<T> filter) where T : class
+        public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> src, IQueryFilter<T> filter) where T : class
         {
             if (filter != null)
                 src = filter.GetSatisfiedItems(src);
@@ -18,7 +18,7 @@ namespace NtCQRS.Repository
             return src;
         }
 
-        public static IQueryable<T> ApplyJoin<T>(this IQueryable<T> src, INtJoin<T> join) where T : class
+        public static IQueryable<T> ApplyJoin<T>(this IQueryable<T> src, IQueryJoin<T> join) where T : class
         {
             if (join != null)
                 src = join.Include(src);
@@ -26,7 +26,7 @@ namespace NtCQRS.Repository
             return src;
         }
 
-        public static IQueryable<T> ApplyPaging<T>(this IQueryable<T> src, INtPaging paging) where T : class
+        public static IQueryable<T> ApplyPaging<T>(this IQueryable<T> src, IQueryPaging paging) where T : class
         {
             if (paging != null)
                 src = src.Skip(paging.Offset).Take(paging.PageSize);
@@ -34,7 +34,7 @@ namespace NtCQRS.Repository
             return src;
         }
 
-        public static IQueryable<T> ApplyOrder<T, V>(this IQueryable<T> src, INtOrder<T, V> order) where T : class
+        public static IQueryable<T> ApplyOrder<T, V>(this IQueryable<T> src, IQueryOrder<T, V> order) where T : class
         {
             if (order != null)
             {

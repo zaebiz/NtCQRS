@@ -53,14 +53,15 @@
     <Compile Include="ICommand.cs" />
     <Compile Include="INtQuery.cs" />
     <Compile Include="NtQueryBase.cs" />
-    <Compile Include="Specification\INtJoin.cs" />
-    <Compile Include="Specification\INtPaging.cs" />
+    <Compile Include="Specification\IQueryJoin.cs" />
+    <Compile Include="Specification\IQueryPaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\INtSpecification.cs" />
+    <Compile Include="Repository\IQuerySpecification.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Specification\INtOrder.cs" />
+    <Compile Include="Specification\IQueryOrder.cs" />
     <Compile Include="Repository\QueryableEx.cs" />
-    <Compile Include="Specification\INtFilter.cs" />
+    <Compile Include="Specification\IQueryFilter.cs" />
+    <Compile Include="Specification\QueryPaging.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
