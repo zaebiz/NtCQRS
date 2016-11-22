@@ -47,23 +47,6 @@ namespace NtCQRS.Repository
             return src;
         }
 
-
-
-        //public static IQueryable<T> GetFilteredList<T>(this IQueryable<T> src, INtSpecification<T> filter) where TEntity : IDbEntity
-        //{
-        //    return src.ApplyFilter(filter);
-        //}
-
-        //public static IQueryable<T> GetPagedFilteredList<T>(this IQueryable<T> src, INtSpecification<T> filter, INtPaging paging) where TEntity : IDbEntity
-        //{
-        //    return src
-        //        .ApplyFilter(filter)
-        //        .ApplyPaging(paging);
-        //}
-
-
-
-        //public static IQueryable<T> GetFilteredList<T>(this IQueryable<T> src, ISpecification<T> filter) where TEntity : IDbEntity
-        //    => src.ApplyFilter(filter);
+        
     }
 }

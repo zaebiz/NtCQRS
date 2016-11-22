@@ -17,20 +17,42 @@ namespace NtCQRS.Models
         public RiderService()
         {
             _db = new RacetrackIASEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            _db.Configuration.ProxyCreationEnabled = false;
+            _db.Configuration.AutoDetectChangesEnabled = false;
         }
 
         public void GetRiderList(RiderFilter filter)
         {
-            var query = new GetListQuery<Riders>(_db);
-            query.Spec = new QuerySpec<Riders>()
+            var query = new GetListQuery<Riders>(_db)
             {
-                //Filter = filter,
-                Join = new SingleRiderJoinSpec(),
-                Paging = new QueryPaging(50, 0)
+                Spec = new QuerySpec<Riders>()
+                {
+                    Filter = filter,
+                    Join = new SingleRiderJoinSpec(),
+                    Paging = new QueryPaging(50, 0)
+                }
             };
 
             var res = query.GetResult();
             return;
         }
+
+        public void GetRiderById(int riderId)
+        {
+            var query = new GetByIdQuery<Riders>(_db)
+            {
+                Spec = new GetByIdSpec<Riders>()
+                {
+                    Join = new SingleRiderJoinSpec(),
+                    Id = riderId
+                }
+            };
+
+            var res = query.GetResult();
+            return;
+        }
+
+
     }
 }

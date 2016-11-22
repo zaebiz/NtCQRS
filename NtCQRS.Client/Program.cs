@@ -19,6 +19,9 @@ namespace NtCQRS.Client
             };
 
             svc.GetRiderList(filter);
+
+            svc.GetRiderById(177);
+
             Console.ReadKey();
         }
     }

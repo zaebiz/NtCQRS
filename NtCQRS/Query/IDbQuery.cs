@@ -9,4 +9,7 @@ namespace NtCQRS.Query
         TEntity GetResult();
         Task<TEntity> GetResultAsync();
     }
+
+    // todo можно декомпозировать еще сильнее, разделив синхронные и асинхронные команды
+    // например
 }

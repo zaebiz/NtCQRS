@@ -58,6 +58,7 @@
     <Compile Include="Query\IDbQuery.cs" />
     <Compile Include="Query\INtQuery.cs" />
     <Compile Include="Query\DbQueryBase.cs" />
+    <Compile Include="Specification\GetByIdSpec.cs" />
     <Compile Include="Specification\IQueryJoin.cs" />
     <Compile Include="Specification\Paging\IQueryPaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

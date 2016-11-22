@@ -9,7 +9,7 @@ namespace NtCQRS.Query
 {
     public class GetListQuery<TEntity>
         : DbQueryBase<TEntity>
-            , IDbQuery<List<TEntity>, QuerySpec<TEntity>> 
+        , IDbQuery<List<TEntity>, QuerySpec<TEntity>> 
         where TEntity : class, IDbEntity
     {
         public GetListQuery(DbContext ctx) : base(ctx)
