@@ -53,8 +53,8 @@
     <Compile Include="DbEntityBase.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IDbEntity.cs" />
-    <Compile Include="INtQuery.cs" />
-    <Compile Include="NtQueryBase.cs" />
+    <Compile Include="Query\INtQuery.cs" />
+    <Compile Include="Query\NtQueryBase.cs" />
     <Compile Include="Specification\IQueryJoin.cs" />
     <Compile Include="Specification\IQueryPaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
