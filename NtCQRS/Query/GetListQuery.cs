@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using NtCQRS.Repository;
 using NtCQRS.Specification;
 
 namespace NtCQRS.Query

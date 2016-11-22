@@ -1,5 +1,6 @@
 using System.Data.Entity;
 using System.Threading.Tasks;
+using NtCQRS.Repository;
 
 namespace NtCQRS.Query
 {

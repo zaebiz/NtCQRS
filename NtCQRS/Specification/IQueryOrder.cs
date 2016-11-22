@@ -1,4 +1,5 @@
 ﻿using System;
+using NtCQRS.Repository;
 
 namespace NtCQRS.Specification
 {

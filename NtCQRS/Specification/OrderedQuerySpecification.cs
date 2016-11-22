@@ -1,3 +1,5 @@
+using NtCQRS.Repository;
+
 namespace NtCQRS.Specification
 {
     public class OrderedQuerySpecification<TEntity, TSortKey> where TEntity : IDbEntity

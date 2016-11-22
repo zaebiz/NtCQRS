@@ -1,4 +1,6 @@
-﻿namespace NtCQRS.Specification
+﻿using NtCQRS.Repository;
+
+namespace NtCQRS.Specification
 {
     // todo - можно переделать в класс
     public class QuerySpecification<T> where T : IDbEntity
