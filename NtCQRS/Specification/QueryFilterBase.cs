@@ -7,6 +7,7 @@ using NtCQRS.Repository;
 
 namespace NtCQRS.Specification
 {
+    // todo при необходимости можно вынести параметры фильтрации в отдельный класс
     public class QueryFilterBase<TEntity> 
         : IQueryFilter<TEntity>
         where TEntity : IDbEntity
