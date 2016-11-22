@@ -9,4 +9,5 @@ namespace NtCQRS.Specification
         int Direction { get; set; }
         Func<TEntity, TSortKey> Expression { get; set; }
     }
+   
 }

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NtCQRS.Repository;
 
 namespace NtCQRS.Query
 {
+    [Obsolete]
     public interface INtQuery<TEntity> 
         where TEntity : IDbEntity
     {

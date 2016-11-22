@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using NtCQRS.Specification;
 
-namespace NtCQRS.Models.Filters
+namespace NtCQRS.Models.SearchFilters
 {
     public class RiderFilter : QueryFilterBase<Riders>
     {
-        public int RiderId { get; set; }
         public string RiderName { get; set; }
+
+        public override IQueryable<Riders> GetSatisfiedItems(IQueryable<Riders> src)
+        {
+            if (!string.IsNullOrEmpty(RiderName))
+                src = src.Where(x => x.Name.Contains(this.RiderName));
+
+            return base.GetSatisfiedItems(src);
+        }
     }
 }

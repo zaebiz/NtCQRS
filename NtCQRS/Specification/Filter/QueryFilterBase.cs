@@ -21,7 +21,7 @@ namespace NtCQRS.Specification
             IdList = new List<int>();
         }
 
-        public IQueryable<TEntity> GetSatisfiedItems(IQueryable<TEntity> src)
+        public virtual IQueryable<TEntity> GetSatisfiedItems(IQueryable<TEntity> src)
         {
             if (Id.GetValueOrDefault() > 0)
                 src = src.Where(x => x.Id == this.Id);

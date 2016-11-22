@@ -19,6 +19,6 @@ namespace NtCQRS.Specification
 
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
-        public int Offset => PageSize*PageSize;
+        public int Offset => PageSize*PageNumber;
     }
 }

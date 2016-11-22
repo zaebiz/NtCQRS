@@ -3,15 +3,18 @@
 namespace NtCQRS.Specification
 {
     // todo - можно переделать в класс
-    public class QuerySpecification<T> where T : IDbEntity
+    public class QuerySpecification<TEntity> where TEntity : IDbEntity
     {
         public QuerySpecification()
         {
             Paging = new QueryPaging(20, 0);
+            DefaultOrder = QueryOrderFactory<TEntity>.Create();
         }
 
-        public IQueryFilter<T> Filter { get; set; }
-        public IQueryJoin<T> Join { get; set; }
+        public IQueryFilter<TEntity> Filter { get; set; }
+        public IQueryJoin<TEntity> Join { get; set; }
         public IQueryPaging Paging { get; set; }
+        // пейджинг без сортировки не работает
+        public IQueryOrder<TEntity, int> DefaultOrder { get; }
     }
 }

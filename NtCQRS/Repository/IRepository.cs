@@ -24,6 +24,7 @@ namespace NtCQRS.Repository
         public NtRepository(DbContext db)
         {
             _db = db;
+            _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
         public TEntity GetItemById<TEntity>(int id/*, INtJoin<TEntity> join*/) where TEntity : class, IDbEntity
@@ -35,9 +36,14 @@ namespace NtCQRS.Repository
 
         public IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class, IDbEntity
         {
-            return GetQueryable<TEntity>()
+            var queryable = GetQueryable<TEntity>()
                 .ApplyJoin(spec.Join)
-                .ApplyFilter(spec.Filter)
+                .ApplyFilter(spec.Filter);
+
+            if (spec.Paging != null)    // пейджинг без сортировки не работает
+                queryable = queryable.ApplyOrder(spec.DefaultOrder);
+
+            return queryable
                 .ApplyPaging(spec.Paging);
         }
              
@@ -45,6 +51,9 @@ namespace NtCQRS.Repository
         public IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec)
             where TEntity : class, IDbEntity
         {
+            if (spec.Order == null)
+                throw new Exception("Не указана сортировка. Используйте QuerySpecification<>");
+
             return GetList<TEntity>(spec.Spec)
                 .ApplyOrder(spec.Order);
         }
