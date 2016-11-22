@@ -11,7 +11,7 @@ namespace NtCQRS.Repository
 {
     public interface IRepository
     {
-        TEntity GetItemById<TEntity>(int itemId) where TEntity : class, IDbEntity;
+        TEntity GetItemById<TEntity>(GetByIdSpec<TEntity> spec) where TEntity : class, IDbEntity;
         //IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : IDbEntity;
         IQueryable<TEntity> GetList<TEntity>(QuerySpec<TEntity> spec) where TEntity : class, IDbEntity;
         IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpec<TEntity, TSortKey> spec) where TEntity : class, IDbEntity;
@@ -27,13 +27,23 @@ namespace NtCQRS.Repository
             _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
-        public TEntity GetItemById<TEntity>(int id/*, INtJoin<TEntity> join*/) where TEntity : class, IDbEntity
-            => _db.Set<TEntity>()
-                .Find(id);
-
         private IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class, IDbEntity
             => _db.Set<TEntity>();
 
+        /// <summary>
+        /// получить сущность по Id
+        /// </summary>
+        public TEntity GetItemById<TEntity>(GetByIdSpec<TEntity> spec) where TEntity : class, IDbEntity
+            => GetQueryable<TEntity>()
+                .ApplyJoin(spec.Join)
+                .FirstOrDefault(x => x.Id == spec.Id);        
+
+        /// <summary>
+        /// получить список сущностей по "спецификации" - набору правил описывающему:
+        /// Join (какие таблицы присоединять к результату запроса)
+        /// Filter (набор Where-предикатов, фильтрующих сущности)
+        /// Paging (параметры пагинации запроса)
+        /// </summary>
         public IQueryable<TEntity> GetList<TEntity>(QuerySpec<TEntity> spec) where TEntity : class, IDbEntity
         {
             var queryable = GetQueryable<TEntity>()
@@ -46,8 +56,14 @@ namespace NtCQRS.Repository
             return queryable
                 .ApplyPaging(spec.Paging);
         }
-             
 
+        /// <summary>
+        /// получить список сущностей по "спецификации" - набору правил описывающему:
+        /// Join (какие таблицы присоединять к результату запроса)
+        /// Filter (набор Where-предикатов, фильтрующих сущности)
+        /// Paging (параметры пагинации запроса)
+        /// Order (правило сортировки результата)
+        /// </summary>
         public IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpec<TEntity, TSortKey> spec)
             where TEntity : class, IDbEntity
         {
@@ -58,6 +74,25 @@ namespace NtCQRS.Repository
                 .ApplyOrder(spec.Order);
         }
 
-        
+        public void AddOrUpdate<TEntity>(TEntity entity) where TEntity : class, IDbEntity
+        {
+            bool entityExist = entity.Id > 0;
+
+            _db.Entry(entity).State = entityExist
+                ? EntityState.Modified
+                : EntityState.Added;
+        }
+
+        public void SaveChanges()
+        {
+            _db.SaveChanges();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _db.SaveChangesAsync();
+        }
+
+
     }
 }

@@ -32,10 +32,5 @@ namespace NtCQRS.Query
             throw new NotImplementedException();
         }
     }
-
-    // этот класс инстанциируем прямо в сервисах. используеи предопределенный IQuerySpecification
-
-    // класс получения списка элементов с сортировкой
-
-    // класс получающий 1 элемент
+    
 }
