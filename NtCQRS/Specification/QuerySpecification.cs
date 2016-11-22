@@ -3,9 +3,9 @@
 namespace NtCQRS.Specification
 {
     // todo - можно переделать в класс
-    public class QuerySpecification<TEntity> where TEntity : IDbEntity
+    public class QuerySpec<TEntity> where TEntity : IDbEntity
     {
-        public QuerySpecification()
+        public QuerySpec()
         {
             Paging = new QueryPaging(20, 0);
             DefaultOrder = QueryOrderFactory<TEntity>.Create();

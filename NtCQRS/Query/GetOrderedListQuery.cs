@@ -8,7 +8,7 @@ namespace NtCQRS.Query
 {
     public class GetOrderedListQuery<TEntity, TSortKey>
         : GetListQuery<TEntity>
-            , IDbQuery<List<TEntity>, OrderedQuerySpecification<TEntity, TSortKey>>
+            , IDbQuery<List<TEntity>, OrderedQuerySpec<TEntity, TSortKey>>
         where TEntity : class, IDbEntity
     {
         public GetOrderedListQuery(DbContext db) : base(db)
@@ -17,7 +17,7 @@ namespace NtCQRS.Query
             //Spec = new 
         }
 
-        public new OrderedQuerySpecification<TEntity, TSortKey> Spec { get; set; }
+        public new OrderedQuerySpec<TEntity, TSortKey> Spec { get; set; }
 
         protected override IQueryable<TEntity> Execute()
             => _db.GetOrderedList(Spec);

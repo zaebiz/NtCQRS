@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Repository\DbEntityBase.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Repository\IDbEntity.cs" />
@@ -60,17 +59,18 @@
     <Compile Include="Query\INtQuery.cs" />
     <Compile Include="Query\DbQueryBase.cs" />
     <Compile Include="Specification\IQueryJoin.cs" />
-    <Compile Include="Specification\IQueryPaging.cs" />
+    <Compile Include="Specification\Paging\IQueryPaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Specification\QueryFilterBase.cs" />
-    <Compile Include="Specification\QueryOrderFactory.cs" />
+    <Compile Include="Specification\Filter\QueryFilterBase.cs" />
+    <Compile Include="Specification\Order\QueryOrderFactory.cs" />
+    <Compile Include="Specification\Order\QueryOrderBase.cs" />
     <Compile Include="Specification\QuerySpecification.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Specification\IQueryOrder.cs" />
+    <Compile Include="Specification\Order\IQueryOrder.cs" />
     <Compile Include="Repository\QueryableEx.cs" />
-    <Compile Include="Specification\IQueryFilter.cs" />
-    <Compile Include="Specification\OrderedQuerySpecification.cs" />
-    <Compile Include="Specification\QueryPaging.cs" />
+    <Compile Include="Specification\Filter\IQueryFilter.cs" />
+    <Compile Include="Specification\OrderedQuerySpec.cs" />
+    <Compile Include="Specification\Paging\QueryPaging.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

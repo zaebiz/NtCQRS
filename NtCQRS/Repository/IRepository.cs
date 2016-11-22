@@ -13,8 +13,8 @@ namespace NtCQRS.Repository
     {
         TEntity GetItemById<TEntity>(int itemId) where TEntity : class, IDbEntity;
         //IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : IDbEntity;
-        IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class, IDbEntity;
-        IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec) where TEntity : class, IDbEntity;
+        IQueryable<TEntity> GetList<TEntity>(QuerySpec<TEntity> spec) where TEntity : class, IDbEntity;
+        IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpec<TEntity, TSortKey> spec) where TEntity : class, IDbEntity;
     }
 
     public class NtRepository : IRepository
@@ -34,7 +34,7 @@ namespace NtCQRS.Repository
         private IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class, IDbEntity
             => _db.Set<TEntity>();
 
-        public IQueryable<TEntity> GetList<TEntity>(QuerySpecification<TEntity> spec) where TEntity : class, IDbEntity
+        public IQueryable<TEntity> GetList<TEntity>(QuerySpec<TEntity> spec) where TEntity : class, IDbEntity
         {
             var queryable = GetQueryable<TEntity>()
                 .ApplyJoin(spec.Join)
@@ -48,7 +48,7 @@ namespace NtCQRS.Repository
         }
              
 
-        public IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpecification<TEntity, TSortKey> spec)
+        public IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpec<TEntity, TSortKey> spec)
             where TEntity : class, IDbEntity
         {
             if (spec.Order == null)

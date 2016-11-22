@@ -9,12 +9,12 @@ namespace NtCQRS.Query
 {
     public class GetListQuery<TEntity>
         : DbQueryBase<TEntity>
-            , IDbQuery<List<TEntity>, QuerySpecification<TEntity>> 
+            , IDbQuery<List<TEntity>, QuerySpec<TEntity>> 
         where TEntity : class, IDbEntity
     {
         public GetListQuery(DbContext ctx) : base(ctx)
         {
-            Spec = new QuerySpecification<TEntity>();
+            Spec = new QuerySpec<TEntity>();
         }
 
         protected override IQueryable<TEntity> Execute()
@@ -23,7 +23,7 @@ namespace NtCQRS.Query
 
         #region IQuery members
 
-        public QuerySpecification<TEntity> Spec { get; set; }
+        public QuerySpec<TEntity> Spec { get; set; }
 
         public List<TEntity> GetResult()
             => Execute().ToList();

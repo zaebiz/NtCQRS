@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace NtCQRS
 {
-    public interface INtCommand<Tin, Tout>
+    public interface INtCommand<TParam, TResult>
     {
-        Tout Execute(Tin data);
+        TResult Execute(TParam data);
+        Task<TResult> ExecuteAsync(TParam data);
     }
 
-    public interface INtAsyncCommand<Tin, Tout> : INtCommand<Tin, Task<Tout>>
-    {}
+    //public interface INtAsyncCommand<Tin, Tout> : INtCommand<Tin, Task<Tout>>
+    //{}
     
 
 }

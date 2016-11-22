@@ -22,7 +22,7 @@ namespace NtCQRS.Models
         public void GetRiderList(RiderFilter filter)
         {
             var query = new GetListQuery<Riders>(_db);
-            query.Spec = new QuerySpecification<Riders>()
+            query.Spec = new QuerySpec<Riders>()
             {
                 //Filter = filter,
                 Join = new SingleRiderJoinSpec(),
