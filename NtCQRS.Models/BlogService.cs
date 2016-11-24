@@ -40,6 +40,19 @@ namespace NtCQRS.Models
         }
 
         /// <summary>
+        /// пример - получение кол-ва блогов учитывая фильтр
+        /// </summary>
+        public int GetBlogCount(BlogFilter filter)
+        {
+            var query = new GetCountQuery<Blog>(_db)
+            {
+                Spec = filter
+            };
+
+            return query.GetResult();
+        }
+
+        /// <summary>
         /// пример - получение списка блогов по фильтру
         /// </summary>
         public List<Blog> GetBlogList(BlogFilter filter)

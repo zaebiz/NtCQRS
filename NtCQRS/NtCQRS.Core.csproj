@@ -52,6 +52,7 @@
     <Compile Include="Command\AddOrUpdateCmd.cs" />
     <Compile Include="Command\IDbCommand.cs" />
     <Compile Include="Command\RemoveCmd.cs" />
+    <Compile Include="Query\GetCountQuery.cs" />
     <Compile Include="Repository\DbEntityBase.cs" />
     <Compile Include="Command\DbCommandBase.cs" />
     <Compile Include="Repository\IDbEntity.cs" />

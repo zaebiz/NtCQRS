@@ -27,6 +27,16 @@ namespace NtCQRS.Client
             var blogs = blogSvc.GetBlogList(filter);
             PrintBlogs(blogs);
 
+            Console.WriteLine();
+            Console.WriteLine($"Блоги в которых были посты за последнюю неделю :");
+            filter = new BlogFilter()
+            {
+                HasPostLaterThen = DateTime.Now.AddDays(-7)
+            };
+
+            var count = blogSvc.GetBlogCount(filter);
+            Console.WriteLine($"Количество : {count}");
+
             // посты с фильтром и сортироовкой
             var postSvc = new PostService();
             Console.WriteLine();
