@@ -6,10 +6,21 @@ namespace NtCQRS.Specification
     {
         public OrderedQuerySpec()
         {
-            Spec = new QuerySpec<TEntity>();
+            BaseSpec = new QuerySpec<TEntity>();
         }
 
-        public QuerySpec<TEntity> Spec;
+        public OrderedQuerySpec(QuerySpec<TEntity> baseSpec)
+        {
+            BaseSpec = baseSpec;
+        }
+
+        public OrderedQuerySpec(QuerySpec<TEntity> baseSpec, IQueryOrder<TEntity, TSortKey> order)
+        {
+            BaseSpec = baseSpec;
+            Order = order;
+        }
+
+        public QuerySpec<TEntity> BaseSpec;
         public IQueryOrder<TEntity, TSortKey> Order { get; set; }
     }
 }

@@ -59,9 +59,7 @@
     <Compile Include="EF\User.cs" />
     <Compile Include="JoinSpec\BlogListJoinSpec.cs" />
     <Compile Include="JoinSpec\BlogItemJoinSpec.cs" />
-    <Compile Include="JoinSpec\SingleRiderJoinSpec.cs" />
-    <Compile Include="RiderService.cs" />
-    <Compile Include="SearchFilters\RiderFilter.cs" />
+    <Compile Include="SearchFilters\BlogFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

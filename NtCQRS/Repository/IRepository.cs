@@ -77,7 +77,7 @@ namespace NtCQRS.Repository
             if (spec.Order == null)
                 throw new Exception("Не указана сортировка. Используйте QuerySpecification<>");
 
-            return GetList<TEntity>(spec.Spec)
+            return GetList<TEntity>(spec.BaseSpec)
                 .ApplyOrder(spec.Order);
         }
 
