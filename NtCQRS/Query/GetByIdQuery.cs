@@ -5,8 +5,12 @@ using NtCQRS.Specification;
 
 namespace NtCQRS.Query
 {
+    /// <summary>
+    /// класс дл€ запросов любых сущностей из Ѕƒ по Id
+    /// можно не наследоватьс€, а инстанцировать пр€мо в коде, указыва€ конкретный тип
+    /// </summary>
     public class GetByIdQuery<TEntity>
-        : DbQueryBase<TEntity>
+        : DbQueryBase
         , IDbQuery<TEntity, GetByIdSpec<TEntity>>
         where TEntity : class, IDbEntity
     {

@@ -11,10 +11,17 @@ namespace NtCQRS.Repository
 {
     public interface IRepository
     {
+        // запросы
         TEntity GetItemById<TEntity>(GetByIdSpec<TEntity> spec) where TEntity : class, IDbEntity;
-        //IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : IDbEntity;
         IQueryable<TEntity> GetList<TEntity>(QuerySpec<TEntity> spec) where TEntity : class, IDbEntity;
         IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpec<TEntity, TSortKey> spec) where TEntity : class, IDbEntity;
+
+        // команды
+        void AddOrUpdate<TEntity>(TEntity entity) where TEntity : class, IDbEntity;
+        void Remove<TEntity>(TEntity entity) where TEntity : class, IDbEntity;
+        void Remove<TEntity>(int entityId) where TEntity : class, IDbEntity;
+        void SaveChanges();
+        Task SaveChangesAsync();
     }
 
     public class NtRepository : IRepository
@@ -74,6 +81,10 @@ namespace NtCQRS.Repository
                 .ApplyOrder(spec.Order);
         }
 
+        /// <summary>
+        /// Создать новую сущность, либо обновить существующую (в контексте)
+        /// Операция выбирается в зависимости от поля Id (insert = Id==0)
+        /// </summary>
         public void AddOrUpdate<TEntity>(TEntity entity) where TEntity : class, IDbEntity
         {
             bool entityExist = entity.Id > 0;
@@ -81,6 +92,26 @@ namespace NtCQRS.Repository
             _db.Entry(entity).State = entityExist
                 ? EntityState.Modified
                 : EntityState.Added;
+        }
+
+        /// <summary>
+        /// удаление сущности (в контексте)
+        /// </summary>
+        public void Remove<TEntity>(TEntity entity) where TEntity : class, IDbEntity
+        {
+            _db.Set<TEntity>().Remove(entity);
+        }
+
+        /// <summary>
+        /// удаление сущности по Id (в контексте)
+        /// </summary>
+        public void Remove<TEntity>(int entityId) where TEntity : class, IDbEntity
+        {
+            var entity = _db.Set<TEntity>().Find(entityId);
+            if (entity == null)
+                throw new ArgumentOutOfRangeException(nameof(entityId), "Requested entity not found");
+
+            Remove(entity);
         }
 
         public void SaveChanges()

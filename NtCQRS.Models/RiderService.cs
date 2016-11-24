@@ -16,10 +16,7 @@ namespace NtCQRS.Models
 
         public RiderService()
         {
-            _db = new RacetrackIASEntities();
-            _db.Configuration.LazyLoadingEnabled = false;
-            _db.Configuration.ProxyCreationEnabled = false;
-            _db.Configuration.AutoDetectChangesEnabled = false;
+            _db = new RacetrackIASEntities();            
         }
 
         public void GetRiderList(RiderFilter filter)
