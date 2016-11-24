@@ -5,9 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NtCQRS.Core", "NtCQRS\NtCQRS.Core.csproj", "{0AEA832E-536B-4D2F-8B7D-0C274DAAFF68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NtCQRS.Models", "NtCQRS.Models\NtCQRS.Models.csproj", "{A2B07EAB-0AB4-4DB1-969D-51DC47CB903D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NtCQRS.Example.Models", "NtCQRS.Models\NtCQRS.Example.Models.csproj", "{A2B07EAB-0AB4-4DB1-969D-51DC47CB903D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NtCQRS.Client", "NtCQRS.Client\NtCQRS.Client.csproj", "{00E1FFF9-0AD1-4E4B-A5E7-8869241763A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NtCQRS.Example.Client", "NtCQRS.Client\NtCQRS.Example.Client.csproj", "{00E1FFF9-0AD1-4E4B-A5E7-8869241763A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
