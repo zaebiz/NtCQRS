@@ -8,7 +8,7 @@ using NtCQRS.Specification;
 
 namespace NtCQRS.Repository
 {
-    public static class NtQueryableEx
+    public static class QueryableEx
     {
         public static IQueryable<TEntity> ApplyFilter<TEntity>(this IQueryable<TEntity> src, IQueryFilter<TEntity> filter) where TEntity : IDbEntity
         {

@@ -16,14 +16,14 @@ namespace NtCQRS.Command
         public RemoveCmd(DbContext ctx) : base(ctx)
         { }
 
-        public bool Execute(TEntity entity)
+        public virtual bool Execute(TEntity entity)
         {
             _db.Remove(entity);
             _db.SaveChanges();
             return true;
         }
 
-        public async Task<bool> ExecuteAsync(TEntity entity)
+        public virtual async Task<bool> ExecuteAsync(TEntity entity)
         {
             _db.Remove(entity);
             await _db.SaveChangesAsync();

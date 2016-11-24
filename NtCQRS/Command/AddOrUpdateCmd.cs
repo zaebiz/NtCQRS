@@ -16,14 +16,14 @@ namespace NtCQRS.Command
         public AddOrUpdateCmd(DbContext ctx) : base(ctx)
         {}
 
-        public TEntity Execute(TEntity entity)
+        public virtual TEntity Execute(TEntity entity)
         {
             _db.AddOrUpdate(entity);
             _db.SaveChanges();
             return entity;
         }
 
-        public async Task<TEntity> ExecuteAsync(TEntity entity)
+        public virtual async Task<TEntity> ExecuteAsync(TEntity entity)
         {
             _db.AddOrUpdate(entity);
             await _db.SaveChangesAsync();

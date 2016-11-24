@@ -8,7 +8,7 @@ namespace NtCQRS.Query
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TSpecification"></typeparam>
-    public interface IDbQuery<TEntity, TSpecification> where TEntity : class
+    public interface IDbQuery<TEntity, TSpecification> //where TEntity : class
     {
         TSpecification Spec { get; set; }
 

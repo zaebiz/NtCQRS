@@ -13,6 +13,7 @@ namespace NtCQRS.Repository
     {
         // запросы
         TEntity GetItemById<TEntity>(GetByIdSpec<TEntity> spec) where TEntity : class, IDbEntity;
+        IQueryable<TEntity> GetFilteredQueryable<TEntity>(IQueryFilter<TEntity> spec) where TEntity : class, IDbEntity;
         IQueryable<TEntity> GetList<TEntity>(QuerySpec<TEntity> spec) where TEntity : class, IDbEntity;
         IQueryable<TEntity> GetOrderedList<TEntity, TSortKey>(OrderedQuerySpec<TEntity, TSortKey> spec) where TEntity : class, IDbEntity;
 
@@ -24,11 +25,17 @@ namespace NtCQRS.Repository
         Task SaveChangesAsync();
     }
 
-    public class NtRepository : IRepository
+    /// <summary>
+    /// Набор методов, реализующих основные операции с БД. 
+    /// Особенность: типизирован не сам класс, а каждый метод, для того, 
+    /// чтобы 1 и тот же экземпляр репозитория можно было использовать
+    /// для запросов к разным наборам сущностей(DbSet-ам) из контекста.
+    /// </summary>
+    public class RepositoryBase : IRepository
     {
         private readonly DbContext _db;
 
-        public NtRepository(DbContext db)
+        public RepositoryBase(DbContext db)
         {
             _db = db;
             _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
@@ -38,13 +45,22 @@ namespace NtCQRS.Repository
             => _db.Set<TEntity>();
 
         /// <summary>
+        /// получить список сущностей, отфильтрованых по пераметрам
+        /// переданным в объекте типа IQueryFilter
+        /// </summary>
+        public IQueryable<TEntity> GetFilteredQueryable<TEntity>(IQueryFilter<TEntity> spec) where TEntity : class, IDbEntity
+            => GetQueryable<TEntity>()
+                .ApplyFilter(spec);
+
+
+        /// <summary>
         /// получить сущность по Id
         /// </summary>
         public TEntity GetItemById<TEntity>(GetByIdSpec<TEntity> spec) where TEntity : class, IDbEntity
             => GetQueryable<TEntity>()
                 .ApplyJoin(spec.Join)
-                .FirstOrDefault(x => x.Id == spec.Id);        
-
+                .FirstOrDefault(x => x.Id == spec.Id);
+        
         /// <summary>
         /// получить список сущностей по "спецификации" - набору правил описывающему:
         /// Join (какие таблицы присоединять к результату запроса)
@@ -53,9 +69,8 @@ namespace NtCQRS.Repository
         /// </summary>
         public IQueryable<TEntity> GetList<TEntity>(QuerySpec<TEntity> spec) where TEntity : class, IDbEntity
         {
-            var queryable = GetQueryable<TEntity>()
-                .ApplyJoin(spec.Join)
-                .ApplyFilter(spec.Filter);
+            var queryable = GetFilteredQueryable(spec.Filter)
+                .ApplyJoin(spec.Join);
 
             if (spec.Paging != null)    // пейджинг без сортировки не работает
                 queryable = queryable.ApplyOrder(spec.DefaultOrder);

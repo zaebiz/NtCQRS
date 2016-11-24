@@ -3,7 +3,7 @@ using NtCQRS.Repository;
 namespace NtCQRS.Specification
 {
     /// <summary>
-    /// набор параметров, кастомизирующих запрос к Ѕƒ, требующий возврата отсортированных данных
+    /// набор параметров, кастомизирующих запрос к Ѕƒ, требующий сортировки данных
     /// </summary>
     public class OrderedQuerySpec<TEntity, TSortKey> where TEntity : IDbEntity
     {

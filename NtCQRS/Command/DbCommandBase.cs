@@ -15,7 +15,7 @@ namespace NtCQRS.Command
         protected DbCommandBase(DbContext ctx)
         {
             _context = ctx;
-            _db = new NtRepository(ctx);
+            _db = new RepositoryBase(ctx);
         }
     }
 }
