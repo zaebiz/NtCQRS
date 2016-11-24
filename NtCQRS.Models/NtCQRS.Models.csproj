@@ -51,183 +51,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Documents.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\Riders.cs" />
+    <Compile Include="BlogService.cs" />
+    <Compile Include="EF\Blog.cs" />
+    <Compile Include="EF\BlogContext.cs" />
+    <Compile Include="EF\BlogInitializer.cs" />
+    <Compile Include="EF\Post.cs" />
+    <Compile Include="EF\User.cs" />
+    <Compile Include="JoinSpec\BlogListJoinSpec.cs" />
+    <Compile Include="JoinSpec\BlogItemJoinSpec.cs" />
     <Compile Include="JoinSpec\SingleRiderJoinSpec.cs" />
     <Compile Include="RiderService.cs" />
     <Compile Include="SearchFilters\RiderFilter.cs" />
-    <Compile Include="HorseFrisknessRecord.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HorseImages.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HorseMeasures.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HorseOwners.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HorseOwnHistory.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HorseRacetrackStats.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Horses.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupAgeCategories.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupCountries.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupCoverType.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupCurrencies.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupDisciplines.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupDistances.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupGenders.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupHorseBodyCondition.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupHorseBreeds.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupHorseClasses.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupHorseColors.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupJusticeTypes.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupOwnerChangeReasons.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupOwnershipTypes.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupPrizeMoneyDistributions.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupRaceComplication.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupRacePenalties.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupRaceSubTypes.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupRacetracks.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupRiderCategories.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupRiderPositions.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PortalLog.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Posts.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Prizes.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RaceCalendar.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RaceClaims.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RaceGitResults.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RaceResults.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RaceStartPosition.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Racetrack.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Racetrack.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Racetrack.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Racetrack.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Racetrack.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="RacetrackPenalties.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RacetrackUsers.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Riders.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tags.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Uploads.cs">
-      <DependentUpon>Racetrack.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="Racetrack.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Racetrack.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Racetrack.edmx.diagram">
-      <DependentUpon>Racetrack.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Racetrack.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Racetrack.edmx</DependentUpon>
-      <LastGenOutput>Racetrack.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Racetrack.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Racetrack.edmx</DependentUpon>
-      <LastGenOutput>Racetrack.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NtCQRS\NtCQRS.csproj">
+    <ProjectReference Include="..\NtCQRS\NtCQRS.Core.csproj">
       <Project>{0aea832e-536b-4d2f-8b7d-0c274daaff68}</Project>
-      <Name>NtCQRS</Name>
+      <Name>NtCQRS.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
