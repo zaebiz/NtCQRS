@@ -6,7 +6,7 @@ namespace NtCQRS.Models.EF
 {
     public class BlogContext : DbContext
     {
-        public BlogContext()
+        public BlogContext() : base("BlogContext")
         {
             Database.SetInitializer(new BlogInitializer());
         }

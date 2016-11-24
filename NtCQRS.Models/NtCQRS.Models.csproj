@@ -51,7 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BlogStatistics.cs" />
     <Compile Include="BlogService.cs" />
+    <Compile Include="CustomQuery\BlogStatsQuery.cs" />
     <Compile Include="EF\Blog.cs" />
     <Compile Include="EF\BlogContext.cs" />
     <Compile Include="EF\BlogInitializer.cs" />
@@ -59,8 +61,11 @@
     <Compile Include="EF\User.cs" />
     <Compile Include="JoinSpec\BlogListJoinSpec.cs" />
     <Compile Include="JoinSpec\BlogItemJoinSpec.cs" />
+    <Compile Include="JoinSpec\PostListJoinSpec.cs" />
+    <Compile Include="PostService.cs" />
     <Compile Include="SearchFilters\BlogFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchFilters\PostFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

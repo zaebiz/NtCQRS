@@ -25,6 +25,8 @@ namespace NtCQRS.Query
         public GetListQuery(DbContext ctx) : base(ctx)
         {
             Spec = new QuerySpec<TEntity>();
+            ctx.Configuration.LazyLoadingEnabled = false;
+            ctx.Configuration.ProxyCreationEnabled = false;
         }
 
         protected virtual IQueryable<TEntity> Execute()

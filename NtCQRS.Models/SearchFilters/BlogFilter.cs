@@ -14,7 +14,7 @@ namespace NtCQRS.Models.SearchFilters
         public int? UserId { get; set; }
         public string UserName { get; set; }
         public int? PostCountGreaterThen { get; set; }
-        public DateTime PostLaterThen { get; set; } = DateTime.MinValue;
+        public DateTime HasPostLaterThen { get; set; } = DateTime.MinValue;
 
         public override IQueryable<Blog> GetSatisfiedItems(IQueryable<Blog> src)
         {
@@ -27,10 +27,10 @@ namespace NtCQRS.Models.SearchFilters
             if (PostCountGreaterThen.HasValue)
                 src = src.Where(b => b.BlogPosts.Count >= PostCountGreaterThen.Value);
 
-            if (PostLaterThen > DateTime.MinValue)
+            if (HasPostLaterThen > DateTime.MinValue)
                 src = src.Where(b => 
                     b.BlogPosts.Any(x => 
-                        x.PostDate >= PostLaterThen));
+                        x.PostDate >= HasPostLaterThen));
 
 
             return base.GetSatisfiedItems(src);

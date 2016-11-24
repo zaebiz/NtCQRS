@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NtCQRS.Models.EF
 {
-    public class BlogInitializer : DropCreateDatabaseAlways<BlogContext>
+    public class BlogInitializer : CreateDatabaseIfNotExists<BlogContext>
     {
         private List<User> _users;
         private List<Blog> _blogs;
@@ -50,11 +50,11 @@ namespace NtCQRS.Models.EF
 
         private void InitUsers()
         {
-            _users.Add(new User() { Name = "Nikita", });
-            _users.Add(new User() { Name = "Ivan", });
-            _users.Add(new User() { Name = "Maxim", });
-            _users.Add(new User() { Name = "Sergey", });
-            _users.Add(new User() { Name = "Nastya", });
+            _users.Add(new User() { Name = "Nikita", RegistrationDate = DateTime.Today});
+            _users.Add(new User() { Name = "Ivan", RegistrationDate = DateTime.Today });
+            _users.Add(new User() { Name = "Maxim", RegistrationDate = DateTime.Today });
+            _users.Add(new User() { Name = "Sergey", RegistrationDate = DateTime.Today });
+            _users.Add(new User() { Name = "Nikolay", RegistrationDate = DateTime.Today });
         }
 
         private void InitBlogs()
@@ -66,6 +66,7 @@ namespace NtCQRS.Models.EF
                 {
                     Name = GetRandomText(10),
                     Author = author,
+                    CreateDate = DateTime.Today
                 });
             }
         }
@@ -91,11 +92,10 @@ namespace NtCQRS.Models.EF
         {
             var dict = "abcdefghijklmnopqrstuvwxyz1234567890";
             StringBuilder text = new StringBuilder();
-            Random r = new Random();
 
             for (int i = 0; i < length; i++)
             {
-                var symbol = dict[r.Next(dict.Length)];
+                var symbol = dict[_r.Next(dict.Length)];
                 text.Append(symbol);
             }
 

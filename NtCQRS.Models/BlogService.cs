@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NtCQRS.Models.CustomQuery;
 using NtCQRS.Models.EF;
 using NtCQRS.Models.JoinSpec;
+using NtCQRS.Models.Models;
 using NtCQRS.Models.SearchFilters;
 using NtCQRS.Query;
 using NtCQRS.Specification;
@@ -13,14 +15,34 @@ namespace NtCQRS.Models
 {
     public class BlogService
     {
-        private BlogContext _db;
+        private readonly BlogContext _db;
 
         public BlogService()
         {
             _db = new BlogContext();
         }
 
-        public void GetBlogList(BlogFilter filter)
+        /// <summary>
+        /// пример - получение блога по ID
+        /// </summary>
+        public Blog GetBlogById(int blogId)
+        {
+            var query = new GetByIdQuery<Blog>(_db)
+            {
+                Spec = new GetByIdSpec<Blog>()
+                {
+                    Id = blogId,
+                    Join = new BlogItemJoinSpec()
+                }
+            };
+
+            return query.GetResult();
+        }
+
+        /// <summary>
+        /// пример - получение списка блогов по фильтру
+        /// </summary>
+        public List<Blog> GetBlogList(BlogFilter filter)
         {
             var query = new GetListQuery<Blog>(_db)
             {
@@ -32,26 +54,21 @@ namespace NtCQRS.Models
                 }
             };
 
-            var blog = query.GetResult();
-            return;
+            return query.GetResult();
         }
 
-        public async Task GetOrderedBlogList(BlogFilter filter)
+        /// <summary>
+        /// пример - выполнение кастомного асинхронного запроса  и получение результатов
+        /// </summary>
+        public async Task<List<BlogStatistics>> GetBlogStats(List<int> statFilter)
         {
-            var sortOrder = QueryOrderFactory<Blog>.Create<DateTime>(x => x.CreateDate);
-            var baseSpec = new QuerySpec<Blog>()
+            var query = new BlogStatsQuery(_db)
             {
-                Join = new BlogListJoinSpec(),
-                Filter = filter,
+                Spec = statFilter
             };
 
-            var query = new GetOrderedListQuery<Blog, DateTime>(_db)
-            {
-                Spec = new OrderedQuerySpec<Blog, DateTime>(baseSpec, sortOrder)
-            };
-
-            var blog = await query.GetResultAsync();
-            return;
+            return await query.GetResultAsync();
         }
+
     }
 }

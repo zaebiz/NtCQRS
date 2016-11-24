@@ -2,6 +2,9 @@ using NtCQRS.Repository;
 
 namespace NtCQRS.Specification
 {
+    /// <summary>
+    /// набор параметров, кастомизирующих запрос к Ѕƒ, требующий возврата отсортированных данных
+    /// </summary>
     public class OrderedQuerySpec<TEntity, TSortKey> where TEntity : IDbEntity
     {
         public OrderedQuerySpec()
@@ -20,7 +23,14 @@ namespace NtCQRS.Specification
             Order = order;
         }
 
+        /// <summary>
+        /// стандартный набор параметров запроса
+        /// </summary>
         public QuerySpec<TEntity> BaseSpec;
+
+        /// <summary>
+        /// объект описывающий требуемую сортировку
+        /// </summary>
         public IQueryOrder<TEntity, TSortKey> Order { get; set; }
     }
 }

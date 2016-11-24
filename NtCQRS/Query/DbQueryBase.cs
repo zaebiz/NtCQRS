@@ -14,7 +14,7 @@ namespace NtCQRS.Query
     {
         public DbQueryBase(DbContext ctx) : base(ctx)
         {
-            ctx.Configuration.AutoDetectChangesEnabled = false;
+            ctx.Configuration.AutoDetectChangesEnabled = false;            
         }
     }
     

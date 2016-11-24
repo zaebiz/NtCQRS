@@ -11,15 +11,15 @@ namespace NtCQRS.Models.JoinSpec
 {
     /// <summary>
     /// спецификация - какие таблицы включать в результат 
-    /// при получении одного блога из БД
+    /// при получении списка постов из БД
     /// </summary>
-    public class BlogItemJoinSpec : IQueryJoin<Blog>
+    public class PostListJoinSpec : IQueryJoin<Post>
     {
-        public IQueryable<Blog> Include(IQueryable<Blog> src)
+        public IQueryable<Post> Include(IQueryable<Post> src)
         {
             return src
-                .Include(b => b.Author)
-                .Include(b => b.BlogPosts);
+                .Include(x => x.Blog)
+                .Include(x => x.Blog.Author);
         }
     }
 }
