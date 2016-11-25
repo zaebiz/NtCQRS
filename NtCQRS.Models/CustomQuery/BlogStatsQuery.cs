@@ -36,18 +36,6 @@ namespace NtCQRS.Models.CustomQuery
 
         private IQueryable<BlogStatistics> Execute()
         {
-            //_concreteContext.Posts
-            //    .GroupBy(x => x.BlogId)
-            //    .Select(g => new BlogStatistics()
-            //    {
-            //        BlogId = g.Key,
-            //        FirstPost = g.Min(x => x.PostDate),
-            //        LastPost = g.Max(x => x.PostDate),
-            //        PostCount2014 = g.Count(x => x.PostDate.Year == 2014),
-            //        PostCount2015 = g.Count(x => x.PostDate.Year == 2015),
-            //        PostCount2016 = g.Count(x => x.PostDate.Year == 2016),
-            //    }).ToList();
-
             var queryable = _concreteContext.Blogs.AsQueryable();
             if (Spec != null && Spec.Count > 0)
                 queryable = queryable.Where(x => Spec.Any(s => s == x.Id));

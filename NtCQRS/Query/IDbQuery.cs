@@ -6,8 +6,6 @@ namespace NtCQRS.Query
     /// Тип "запрос" (Query) - операция возвращающая данные 
     /// не имеет права ничего менять 
     /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
-    /// <typeparam name="TSpecification"></typeparam>
     public interface IDbQuery<TEntity, TSpecification> //where TEntity : class
     {
         TSpecification Spec { get; set; }
